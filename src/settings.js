@@ -4,7 +4,7 @@
  * @Date: 2023-03-16 01:17:25
  */
 module.exports = {
-  title: '职工管理系统',
+  title: '陕汽总装车间职工管理系统',
 
   /**
    * @type {boolean} true | false

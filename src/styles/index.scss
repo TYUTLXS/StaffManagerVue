@@ -5,6 +5,12 @@
 @import './sidebar.scss';
 @import './btn.scss';
 
+
+.sqhidden{
+  display: none;
+}
+
+
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;

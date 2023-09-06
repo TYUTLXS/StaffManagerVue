@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      title: '职工管理系统',
+      title: '陕汽职工管理系统',
       logo: require('../../../assets/logo.png')
     }
   }

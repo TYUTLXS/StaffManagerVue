@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form :model="clerk" ref="clerk" :rules="rule" label-width="120px">
-      <el-form-item label="职工编号">
+      <el-form-item label="职工编号" class='sqhidden'>
         <el-col :span="6">
           <el-input :span="6" :disabled="true" v-model="clerk.id" />
         </el-col>
@@ -11,6 +11,13 @@
           <el-input maxlength="5" show-word-limit v-model="clerk.name" />
         </el-col>
       </el-form-item>
+
+      <el-form-item  label="工号">
+        <el-col :span="6">
+          <el-input  v-model="clerk.sqid" />
+        </el-col>
+      </el-form-item>
+
       <el-form-item prop="sex" label="性别">
         <el-col :span="4">
           <el-radio v-model="clerk.sex" prop="sex" label="0">女</el-radio>
@@ -30,11 +37,29 @@
       <el-form-item prop="address" label="地址">
         <el-input v-model="clerk.address" />
       </el-form-item>
-      <el-form-item prop="position" label="职务">
+
+    <el-form-item  label="毕业院校">
+        <el-input v-model="clerk.college" />
+      </el-form-item>
+
+     <el-form-item label="家庭联系人">
+        <el-input v-model="clerk.family" />
+      </el-form-item>
+
+     <el-form-item label="家庭联系人电话">
+        <el-input v-model="clerk.familyNumber" />
+    </el-form-item>
+
+
+
+
+      <el-form-item prop="position" label="职务" class='sqhidden'>
         <el-col :span="4">
           <el-input v-model="clerk.position" />
         </el-col>
       </el-form-item>
+
+
       <el-form-item prop="departmentId" label="部门">
         <el-select v-model="clerk.departmentId" clearable placeholder="请选择">
           <el-option
@@ -46,9 +71,10 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="职工照片">
+      <el-form-item label="职工照片" class='sqhidden'>
         <!-- 头衔缩略图 -->
         <pan-thumb :image="clerk.photo" />
+        <!-- <pan-thumb :image="clerk.photo" /> -->
         <!-- 文件上传按钮 -->
         <el-button
           type="primary"
@@ -85,7 +111,6 @@
     </el-form>
   </div>
 </template>
-
 <script>
 import clerk from "@/api/clerk";
 import department from "@/api/department";
@@ -103,13 +128,18 @@ export default {
         if (reg.test(value)) {
           callback();
         } else {
-          return callback(new Error("请输入正确的手机号"));
+          return callback(new Error("请输入正确格式的手机号"));
         }
       }
     };
     return {
       baseApi:  process.env.VUE_APP_BASE_API,
-      clerk: {},
+      // 
+      clerk: 
+      {
+        position:'职务这个字段不再需要了',
+      },
+      
       saveBtnDisabled: false, // 保存按钮是否禁用,
       departmentList: null,
       saveBtnDisabled: false, // 保存按钮是否禁用,
@@ -152,8 +182,9 @@ export default {
           },
           {
             required: true,
+            // 身份证号15位
             pattern: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
-            message: "请输入正确的身份证号码",
+            message: "请输入格式正确的身份证号码",
             trigger: "blur",
           },
         ],
@@ -196,7 +227,9 @@ export default {
         this.getClerkById(id);
       } else {
         //清空表单
-        this.clerk = {};
+        this.clerk = {
+        position:'职务这个字段不再需要了',
+      };
       }
     },
     //查询部门

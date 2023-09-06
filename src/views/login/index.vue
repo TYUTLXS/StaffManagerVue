@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">职工管理系统</h3>
+        <h3 class="title">陕汽-总装车间 职工管理系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -218,7 +218,7 @@ $cursor: black;
       caret-color: $cursor;
 
       &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
+        // box-shadow: 0 0 0px 1000px $bg inset !important;
         -webkit-text-fill-color: $cursor !important;
       }
     }
@@ -281,7 +281,7 @@ $light_gray: #eee;
       color: black;
       margin: 0px auto 40px auto;
       text-align: center;
-      -webkit-text-stroke: 0.5px green;
+      -webkit-text-stroke: 1.5px rgb(0, 174, 255);
       font-weight: 600;
 
     }
